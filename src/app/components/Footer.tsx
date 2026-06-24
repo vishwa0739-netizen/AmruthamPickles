@@ -94,7 +94,7 @@ export function Footer() {
               ].map(({ Icon, label }) => (
                 <a
                   key={label}
-                  href="#"
+                  href="https://www.instagram.com/amruthampicklesandspices"
                   aria-label={label}
                   className="w-9 h-9 rounded-full flex items-center justify-center transition-all"
                   style={{
