@@ -52,26 +52,31 @@ const SLIDE_PAD = 10; // px — same rule for card[0] through card[last]
 export function BestSellers() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
 
+  /**
+   * Advance or retreat by one slide (used by desktop arrow buttons).
+   * Drives the scroll track via scrollLeft — no scrollIntoView quirks.
+   */
   function scrollTo(dir: 1 | -1) {
     const next = Math.max(0, Math.min(BEST_SELLERS.length - 1, currentIndex + dir));
     setCurrentIndex(next);
     if (scrollRef.current) {
-      const card = scrollRef.current.children[next] as HTMLElement;
-      card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      // Each slide is exactly 50 % of the track's client width.
+      const slideWidth = scrollRef.current.clientWidth / 2;
+      scrollRef.current.scrollTo({ left: next * slideWidth, behavior: "smooth" });
     }
   }
 
-  function handleTouchStart(e: React.TouchEvent) {
-    setTouchStart(e.touches[0].clientX);
-  }
-
-  function handleTouchEnd(e: React.TouchEvent) {
-    if (touchStart === null) return;
-    const diff = touchStart - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) scrollTo(diff > 0 ? 1 : -1);
-    setTouchStart(null);
+  /**
+   * Keeps currentIndex (dots + arrow disabled-state) in sync with wherever
+   * the native CSS scroll-snap has settled after a finger swipe or
+   * programmatic scroll.
+   */
+  function handleScroll() {
+    if (!scrollRef.current) return;
+    const slideWidth = scrollRef.current.clientWidth / 2;
+    const index = Math.round(scrollRef.current.scrollLeft / slideWidth);
+    setCurrentIndex(Math.max(0, Math.min(BEST_SELLERS.length - 1, index)));
   }
 
   return (
@@ -160,8 +165,14 @@ export function BestSellers() {
             NO paddingLeft, NO paddingRight, NO gap.
             All spacing comes exclusively from the per-slide padding below.
           */}
+          {/*
+            onScroll fires after each native snap settles and updates
+            currentIndex so dots + arrow buttons stay in sync.
+            No JS touch handlers — CSS scroll-snap owns all swipe behaviour.
+          */}
           <div
             ref={scrollRef}
+            onScroll={handleScroll}
             style={{
               display: "flex",
               overflowX: "auto",
@@ -172,16 +183,17 @@ export function BestSellers() {
               paddingBottom: 8,
               /* ← no paddingLeft, no paddingRight, no gap */
             }}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
           >
             {BEST_SELLERS.map((product, i) => (
-              <motion.div
+              /*
+                Plain div — NOT motion.div.
+                Removing whileInView prevents the opacity/y entrance animation
+                from re-firing on each card as it scrolls into view mid-swipe,
+                which was the second source of jank (card flashing opacity:0→1
+                while the user's finger is still on the screen).
+              */
+              <div
                 key={product.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.07 }}
                 style={{
                   /*
                     SLIDE WRAPPER — the single uniform rule
@@ -209,7 +221,7 @@ export function BestSellers() {
                 }}
               >
                 <ProductCard product={product} />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -267,17 +279,16 @@ export function BestSellers() {
         </button>
       </div>
 
-      {/* Dot indicators */}
+      {/* Dot indicators — click jumps directly to slide i via scrollLeft math */}
       <div className="flex justify-center gap-2 mt-4">
         {BEST_SELLERS.map((_, i) => (
           <button
             key={i}
             onClick={() => {
               setCurrentIndex(i);
-              const track = scrollRef.current;
-              if (track) {
-                const card = track.children[i] as HTMLElement;
-                card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+              if (scrollRef.current) {
+                const slideWidth = scrollRef.current.clientWidth / 2;
+                scrollRef.current.scrollTo({ left: i * slideWidth, behavior: "smooth" });
               }
             }}
             aria-label={`Go to product ${i + 1}`}

@@ -36,8 +36,9 @@ export function ProductCard({ product, showBrand = true }: Props) {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      style={{ display: "flex", flexDirection: "column", height: "100%" }}
     >
-      <Link to={`/products/${product.slug}`} style={{ textDecoration: "none" }}>
+      <Link to={`/products/${product.slug}`} style={{ textDecoration: "none", display: "flex", flexDirection: "column", flex: 1 }}>
         {/* Image container — square, no border-radius (matching reference) */}
         <div className="relative overflow-hidden" style={{ aspectRatio: "1/1" }}>
           <img
@@ -120,7 +121,8 @@ export function ProductCard({ product, showBrand = true }: Props) {
         </div>
 
         {/* Product info — matching reference layout exactly */}
-        <div className="pt-3 pb-1">
+        {/* flex column: title + price are fixed-height slots; button anchors to bottom via marginTop:auto */}
+        <div className="pt-3 pb-1" style={{ display: "flex", flexDirection: "column", flex: 1 }}>
           {/* Brand label */}
           {showBrand && (
             <p
@@ -139,7 +141,9 @@ export function ProductCard({ product, showBrand = true }: Props) {
             </p>
           )}
 
-          {/* Product name */}
+          {/* Product name — min-height reserves exactly 2 lines so 1-line titles
+              don't make the card shorter than 2-line neighbours. calc(2*1.35em)
+              scales automatically with the font-size override on .best-sellers-card. */}
           <h3
             className="line-clamp-2 underline-anim product-card-name"
             style={{
@@ -149,41 +153,65 @@ export function ProductCard({ product, showBrand = true }: Props) {
               color: "var(--foreground)",
               lineHeight: 1.35,
               marginBottom: 6,
+              minHeight: "calc(2 * 1.35em)",
             }}
           >
             {product.name}
           </h3>
 
-          {/* Price — "From Rs. 180.00" style matching reference */}
-          <p
-            className="product-card-price mb-3"
-            style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", color: "var(--foreground)" }}
+          {/*
+            Price — two SEPARATE rows so height is identical across all cards.
+
+            Row 1 (current price): always visible.
+            Row 2 (strikethrough):  always IN the layout — visibility:hidden
+            reserves the line-height even when there is no discount, so a card
+            without a strikethrough is the same height as one with it.
+
+            Using visibility:hidden (not display:none) is the key: the element
+            still occupies its box; only its ink is suppressed.
+          */}
+          {/* Row 1 — current price */}
+          <div
+            className="product-card-price"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-sm)",
+              color: "var(--foreground)",
+              marginBottom: 2,
+            }}
           >
             <span style={{ color: "rgba(26,10,14,0.5)", fontWeight: 400 }}>From </span>
             <span style={{ fontWeight: 700, color: "var(--foreground)" }}>
               Rs. {product.price.toFixed(2)}
             </span>
-            {product.comparePrice && (
-              <span
-                style={{
-                  marginLeft: 8,
-                  textDecoration: "line-through",
-                  color: "rgba(26,10,14,0.35)",
-                  fontWeight: 400,
-                  fontSize: "var(--text-xs)",
-                }}
-              >
-                Rs. {product.comparePrice.toFixed(2)}
-              </span>
-            )}
-          </p>
+          </div>
+          {/* Row 2 — strikethrough original price (space always reserved) */}
+          <div
+            style={{
+              visibility: product.comparePrice ? "visible" : "hidden",
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-xs)",
+              color: "rgba(26,10,14,0.35)",
+              textDecoration: "line-through",
+              fontWeight: 400,
+              lineHeight: 1.4,
+              marginBottom: 12,
+            }}
+          >
+            {product.comparePrice
+              ? `Rs. ${product.comparePrice.toFixed(2)}`
+              : "\u00A0" /* non-breaking space keeps the row from collapsing */}
+          </div>
 
-          {/* QUICK ADD button — matching reference exactly */}
+          {/* QUICK ADD button — marginTop:auto anchors it to the bottom of the
+              flex column so it always sits at the same vertical position across
+              every card in the row, regardless of title/price content above. */}
           <button
             onClick={handleQuickAdd}
             disabled={product.soldOut}
             className="product-card-quick-add w-full py-3 transition-all active:scale-[0.98]"
             style={{
+              marginTop: "auto",
               backgroundColor: added
                 ? "var(--brand-bronze)"
                 : product.soldOut
