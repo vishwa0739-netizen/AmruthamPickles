@@ -305,7 +305,7 @@ export function ProductListing() {
             <button
               onClick={() => setSpiceFilter([])}
               className="px-6 py-3 mt-4 font-bold"
-              style={{ backgroundColor: "var(--brand-wine)", color: "var(--brand-base)", border: "none", fontFamily: "var(--font-body)", letterSpacing: "0.08em" }}
+              style={{ backgroundColor: "var(--brand-btn-bg)", color: "var(--brand-btn-text)", border: "none", fontFamily: "var(--font-body)", letterSpacing: "0.08em" }}
             >
               CLEAR FILTERS
             </button>

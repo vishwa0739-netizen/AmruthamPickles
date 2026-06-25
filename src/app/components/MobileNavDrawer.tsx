@@ -167,14 +167,16 @@ export function MobileNavDrawer({ isOpen, onClose }: Props) {
                 onClick={onClose}
                 className="flex items-center gap-3 py-3 px-4 rounded-xl transition-colors"
                 style={{
-                  backgroundColor: "var(--brand-wine)",
+                  backgroundColor: "var(--brand-btn-bg)",
                   textDecoration: "none",
-                  color: "var(--brand-base)",
+                  color: "var(--brand-btn-text)",
                   fontWeight: 600,
                   fontSize: "var(--text-sm)",
                   borderRadius: "var(--radius-pill)",
                   justifyContent: "center",
                 }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
               >
                 <UserPlus size={17} />
                 Create Account

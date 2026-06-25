@@ -113,10 +113,10 @@ export const PRODUCTS: Product[] = [
     comparePrice: 260,
     rating: 4.9,
     reviewCount: 342,
-    image: "https://images.unsplash.com/photo-1664791461482-79f5deee490f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_dark.jpg",
     images: [
-      "https://images.unsplash.com/photo-1664791461482-79f5deee490f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
-      "https://images.unsplash.com/photo-1601702538934-efffab67ab65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_dark.jpg",
+      "/prod_jar_beige.jpg",
     ],
     weights: [
       { label: "250g", price: 220 },
@@ -139,10 +139,10 @@ export const PRODUCTS: Product[] = [
     price: 180,
     rating: 4.8,
     reviewCount: 218,
-    image: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jars_pyramid.jpg",
     images: [
-      "https://images.unsplash.com/photo-1532336414038-cf19250c5757?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
-      "https://images.unsplash.com/photo-1592457711340-2412dc07b733?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jars_pyramid.jpg",
+      "/prod_jar_dark.jpg",
     ],
     weights: [
       { label: "200g", price: 180 },
@@ -164,10 +164,10 @@ export const PRODUCTS: Product[] = [
     price: 180,
     rating: 4.9,
     reviewCount: 412,
-    image: "https://images.unsplash.com/photo-1716816211590-c15a328a5ff0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_dark.jpg",
     images: [
-      "https://images.unsplash.com/photo-1716816211590-c15a328a5ff0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
-      "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_dark.jpg",
+      "/prod_jars_pyramid.jpg",
     ],
     weights: [
       { label: "100g", price: 180 },
@@ -190,9 +190,10 @@ export const PRODUCTS: Product[] = [
     price: 180,
     rating: 4.8,
     reviewCount: 234,
-    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_beige.jpg",
     images: [
-      "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_beige.jpg",
+      "/prod_jar_dark.jpg",
     ],
     weights: [
       { label: "100g", price: 180 },
@@ -214,9 +215,10 @@ export const PRODUCTS: Product[] = [
     price: 199,
     rating: 4.7,
     reviewCount: 167,
-    image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_beige.jpg",
     images: [
-      "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_beige.jpg",
+      "/prod_jar_beige.jpg",
     ],
     weights: [
       { label: "100g", price: 199 },
@@ -238,9 +240,10 @@ export const PRODUCTS: Product[] = [
     price: 120,
     rating: 4.6,
     reviewCount: 89,
-    image: "https://images.unsplash.com/photo-1604281293588-6cb784a25d74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_dark.jpg",
     images: [
-      "https://images.unsplash.com/photo-1604281293588-6cb784a25d74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_dark.jpg",
+      "/prod_jar_beige.jpg",
     ],
     weights: [
       { label: "100g", price: 120 },
@@ -262,9 +265,10 @@ export const PRODUCTS: Product[] = [
     price: 160,
     rating: 4.8,
     reviewCount: 145,
-    image: "https://images.unsplash.com/photo-1592457711340-2412dc07b733?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jars_pyramid.jpg",
     images: [
-      "https://images.unsplash.com/photo-1592457711340-2412dc07b733?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jars_pyramid.jpg",
+      "/prod_jar_dark.jpg",
     ],
     weights: [
       { label: "100g", price: 160 },
@@ -287,9 +291,10 @@ export const PRODUCTS: Product[] = [
     comparePrice: 699,
     rating: 4.9,
     reviewCount: 523,
-    image: "https://images.unsplash.com/photo-1729698597774-5c9f7aed07d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_dark.jpg",
     images: [
-      "https://images.unsplash.com/photo-1729698597774-5c9f7aed07d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_dark.jpg",
+      "/prod_jar_beige.jpg",
     ],
     weights: [{ label: "Combo Box", price: 620 }],
     spiceLevels: ["Medium", "Hot"],
@@ -308,9 +313,10 @@ export const PRODUCTS: Product[] = [
     price: 200,
     rating: 4.8,
     reviewCount: 287,
-    image: "https://images.unsplash.com/photo-1601702538934-efffab67ab65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_beige.jpg",
     images: [
-      "https://images.unsplash.com/photo-1601702538934-efffab67ab65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_beige.jpg",
+      "/prod_jars_pyramid.jpg",
     ],
     weights: [
       { label: "200g", price: 200 },
@@ -332,9 +338,10 @@ export const PRODUCTS: Product[] = [
     price: 190,
     rating: 4.6,
     reviewCount: 198,
-    image: "https://images.unsplash.com/photo-1605668674985-0f23ec0765cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80",
+    image: "/prod_jar_beige.jpg",
     images: [
-      "https://images.unsplash.com/photo-1605668674985-0f23ec0765cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80",
+      "/prod_jar_beige.jpg",
+      "/prod_jar_beige.jpg",
     ],
     weights: [
       { label: "250g", price: 190 },
@@ -409,16 +416,7 @@ export const INSTAGRAM_POSTS = [
 export const HERO_SLIDES = [
   {
     id: "1",
-    image: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1400&q=80",
-    eyebrow: "Small Batch · Made to Order",
-    headline: "Pachadies",
-    subhead: "A Gastronomic Gourmet Experience",
-    cta: "Shop Now",
-    ctaLink: "/collections/pachadies",
-  },
-  {
-    id: "2",
-    image: "https://images.unsplash.com/photo-1664791461482-79f5deee490f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1400&q=80",
+    image: "/hero_slide_pickles.jpg",
     eyebrow: "Taste of Andhra in Every Bite",
     headline: "Pickles",
     subhead: "Sun-cured, stone-ground, unapologetically bold",
@@ -426,13 +424,22 @@ export const HERO_SLIDES = [
     ctaLink: "/collections/pickles",
   },
   {
-    id: "3",
-    image: "https://images.unsplash.com/photo-1716816211590-c15a328a5ff0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1400&q=80",
+    id: "2",
+    image: "/hero_slide_podies.jpg",
     eyebrow: "Zero Preservatives · 100% Natural",
     headline: "Podies",
     subhead: "Stone-ground flavour in every spoonful",
     cta: "Shop Podies",
     ctaLink: "/collections/podies",
+  },
+  {
+    id: "3",
+    image: "/hero_slide_pachadies.jpg",
+    eyebrow: "Small Batch · Made to Order",
+    headline: "Pachadies",
+    subhead: "A Gastronomic Gourmet Experience",
+    cta: "Shop Now",
+    ctaLink: "/collections/pachadies",
   },
 ];
 

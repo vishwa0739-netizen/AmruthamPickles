@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ArrowRight, Leaf, Sun, Heart } from "lucide-react";
 import { BRAND } from "../data";
-import amruthamLogo from "../../imports/WhatsApp_Image_2026-06-23_at_12.44.00_AM.jpeg";
+import amruthamLogo from "../../imports/amrutham_logo.jpeg";
 
 const VALUES = [
   { icon: Leaf, title: "No Preservatives, Ever", body: "Every jar leaves our kitchen with only natural ingredients. If it needs a chemical to last, we don't make it." },
@@ -224,8 +224,8 @@ export function About() {
           to="/collections/all"
           className="inline-flex items-center gap-2 font-bold transition-all"
           style={{
-            backgroundColor: "var(--brand-wine)",
-            color: "var(--brand-base)",
+            backgroundColor: "var(--brand-btn-bg)",
+            color: "var(--brand-btn-text)",
             padding: "14px 36px",
             textDecoration: "none",
             fontSize: "var(--text-sm)",
@@ -233,8 +233,8 @@ export function About() {
             textTransform: "uppercase",
             fontFamily: "var(--font-body)",
           }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine-dark1)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine)")}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
         >
           Shop All Products <ArrowRight size={16} />
         </Link>

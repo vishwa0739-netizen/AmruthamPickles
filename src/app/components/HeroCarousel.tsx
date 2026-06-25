@@ -58,7 +58,7 @@ export function HeroCarousel() {
       {/* ── MOBILE: h=146.98px — centered text, no eyebrow ── */}
       <div
         className="relative w-full overflow-hidden select-none md:hidden"
-        style={{ height: "146.98px" }}
+        style={{ height: "147.60px" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={handleTouchStart}

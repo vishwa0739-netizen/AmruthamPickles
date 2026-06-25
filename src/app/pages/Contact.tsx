@@ -150,19 +150,19 @@ export function Contact() {
                   type="submit"
                   className="flex items-center justify-center gap-2 py-4 font-bold transition-all self-start px-8"
                   style={{
-                    backgroundColor: "var(--brand-wine)",
-                    color: "var(--brand-base)",
+                    backgroundColor: "var(--brand-btn-bg)",
+                    color: "var(--brand-btn-text)",
                     borderRadius: "var(--radius-pill)",
                     fontSize: "var(--text-base)",
                     border: "none",
                     boxShadow: "var(--shadow-md)",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine-dark1)";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)";
                     (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine)";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)";
                     (e.currentTarget as HTMLElement).style.transform = "none";
                   }}
                 >

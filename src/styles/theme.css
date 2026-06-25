@@ -2,21 +2,29 @@
 
 :root {
   /* ── Brand Design Tokens ─────────────────────────────── */
-  --brand-base:       #FCFCF7;
-  --brand-base-80:    #F5F5EE;
-  --brand-base-60:    #EDEEE6;
+  --brand-base: #fff9ed;
+  --brand-base-80: #F5F5EE;
+  --brand-base-60: #EDEEE6;
 
   /* Navy replaces old wine #691626 site-wide */
-  --brand-wine:       #003049;
+  --brand-wine: #003049;
   --brand-wine-tint1: #004a70;
   --brand-wine-tint2: #005a87;
   --brand-wine-dark1: #002538;
   --brand-wine-dark2: #001d2b;
 
-  /* Brand red — notification bar */
-  --brand-red:        #C1121F;
+  /* Brand maroon — notification bar & button accent */
+  --brand-red: #580C13;
+  --brand-red-hover: #611219;
 
-  --brand-bronze:       #BF8952;
+  /* ── Primary Button Colors — Maroon + Royal Gold ——————————— */
+  --brand-btn-bg: #580C13;
+  --brand-btn-bg-hover: #611219;
+  --brand-btn-bg-active: #4a0a10;
+  --brand-btn-text: #D4AF37;
+  --brand-btn-text-hover: #D4AF37;
+
+  --brand-bronze: #BF8952;
   --brand-bronze-tint1: #c59563;
   --brand-bronze-tint2: #cca175;
   --brand-bronze-dark1: #ac7b4a;
@@ -24,8 +32,8 @@
 
   /* ── Brand Typography ──────────────────────────────────── */
   --font-display: 'Belleza', 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'Libre Baskerville', Georgia, serif;
-  --font-accent:  'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Libre Baskerville', Georgia, serif;
+  --font-accent: 'Cormorant Garamond', Georgia, serif;
 
   /* ── Spacing Scale (8px base) ──────────────────────────── */
   --space-1: 8px;
@@ -37,29 +45,29 @@
   --space-7: 96px;
 
   /* ── Border Radius ─────────────────────────────────────── */
-  --radius-input:  8px;
-  --radius-card:   16px;
-  --radius-pill:   24px;
-  --radius-full:   9999px;
+  --radius-input: 8px;
+  --radius-card: 16px;
+  --radius-pill: 24px;
+  --radius-full: 9999px;
 
   /* ── Shadows (warm-toned, premium) ─────────────────────── */
-  --shadow-sm:  0 1px 4px rgba(0,48,73,0.06);
-  --shadow-md:  0 4px 16px rgba(0,48,73,0.10);
-  --shadow-lg:  0 8px 32px rgba(0,48,73,0.14);
-  --shadow-xl:  0 16px 48px rgba(0,48,73,0.18);
-  --shadow-glow: 0 0 24px rgba(191,137,82,0.35);
+  --shadow-sm: 0 1px 4px rgba(0, 48, 73, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 48, 73, 0.10);
+  --shadow-lg: 0 8px 32px rgba(0, 48, 73, 0.14);
+  --shadow-xl: 0 16px 48px rgba(0, 48, 73, 0.18);
+  --shadow-glow: 0 0 24px rgba(191, 137, 82, 0.35);
 
   /* ── Font Size Scale ────────────────────────────────────── */
-  --text-xs:   12px;
-  --text-sm:   14px;
+  --text-xs: 12px;
+  --text-sm: 14px;
   --text-base: 16px;
-  --text-md:   18px;
-  --text-lg:   20px;
-  --text-xl:   24px;
-  --text-2xl:  32px;
-  --text-3xl:  40px;
-  --text-4xl:  48px;
-  --text-5xl:  64px;
+  --text-md: 18px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 40px;
+  --text-4xl: 48px;
+  --text-5xl: 64px;
 
   /* ── Base system ────────────────────────────────────────── */
   --font-size: 16px;
@@ -141,16 +149,16 @@
 
 @theme inline {
   /* Brand colors exposed as Tailwind utilities */
-  --color-brand-base:         var(--brand-base);
-  --color-brand-base-80:      var(--brand-base-80);
-  --color-brand-base-60:      var(--brand-base-60);
-  --color-brand-wine:         var(--brand-wine);
-  --color-brand-wine-tint1:   var(--brand-wine-tint1);
-  --color-brand-wine-tint2:   var(--brand-wine-tint2);
-  --color-brand-wine-dark1:   var(--brand-wine-dark1);
-  --color-brand-wine-dark2:   var(--brand-wine-dark2);
-  --color-brand-red:          var(--brand-red);
-  --color-brand-bronze:       var(--brand-bronze);
+  --color-brand-base: var(--brand-base);
+  --color-brand-base-80: var(--brand-base-80);
+  --color-brand-base-60: var(--brand-base-60);
+  --color-brand-wine: var(--brand-wine);
+  --color-brand-wine-tint1: var(--brand-wine-tint1);
+  --color-brand-wine-tint2: var(--brand-wine-tint2);
+  --color-brand-wine-dark1: var(--brand-wine-dark1);
+  --color-brand-wine-dark2: var(--brand-wine-dark2);
+  --color-brand-red: var(--brand-red);
+  --color-brand-bronze: var(--brand-bronze);
   --color-brand-bronze-tint1: var(--brand-bronze-tint1);
   --color-brand-bronze-tint2: var(--brand-bronze-tint2);
   --color-brand-bronze-dark1: var(--brand-bronze-dark1);
@@ -235,24 +243,29 @@
   .best-sellers-card {
     flex: 0 0 calc(20% - 10px) !important;
   }
+
   .best-sellers-card .product-card-name {
     font-size: 12px !important;
     margin-bottom: 4px !important;
   }
+
   .best-sellers-card .product-card-brand {
     font-size: 9px !important;
     margin-bottom: 2px !important;
   }
+
   .best-sellers-card .product-card-price {
     font-size: 11px !important;
     margin-bottom: 6px !important;
   }
+
   .best-sellers-card .product-card-quick-add {
     padding-top: 6px !important;
     padding-bottom: 6px !important;
     font-size: 10px !important;
     letter-spacing: 0.06em !important;
   }
+
   .best-sellers-card .product-card-wishlist-btn {
     width: 28px !important;
     height: 28px !important;

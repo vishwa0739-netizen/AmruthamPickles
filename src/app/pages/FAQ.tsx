@@ -142,7 +142,9 @@ export function FAQ() {
             <Link
               to="/contact"
               className="px-6 py-3 font-semibold transition-all"
-              style={{ backgroundColor: "var(--brand-wine)", color: "var(--brand-base)", borderRadius: "var(--radius-pill)", textDecoration: "none", fontSize: "var(--text-base)" }}
+              style={{ backgroundColor: "var(--brand-btn-bg)", color: "var(--brand-btn-text)", borderRadius: "var(--radius-pill)", textDecoration: "none", fontSize: "var(--text-base)" }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
             >
               Contact Us
             </Link>

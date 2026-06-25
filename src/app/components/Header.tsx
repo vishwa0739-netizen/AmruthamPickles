@@ -38,7 +38,7 @@ export function Header() {
       <div
         className="w-full text-center"
         style={{
-          backgroundColor: "#C1121F",
+          backgroundColor: "#580C13",
           color: "#FCFCF7",
           fontFamily: "var(--font-display)",
           fontWeight: 700,

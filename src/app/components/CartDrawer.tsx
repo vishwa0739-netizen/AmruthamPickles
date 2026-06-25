@@ -146,11 +146,18 @@ export function CartDrawer() {
                         exit={{ opacity: 0, x: 16 }}
                         className="flex gap-4"
                       >
-                        <img
-                          src={item.product.image}
-                          alt={item.product.name}
-                          className="w-20 h-20 object-cover shrink-0"
-                        />
+                        <div
+                          className="shrink-0"
+                          style={{ width: 80, height: 80, backgroundColor: "#F7F2E8", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}
+                        >
+                          <img
+                            src={item.product.image}
+                            alt={item.product.name}
+                            loading="lazy"
+                            className="w-full h-full"
+                            style={{ objectFit: "contain", objectPosition: "center", padding: "6%" }}
+                          />
+                        </div>
                         <div className="flex-1 min-w-0">
                           <p
                             style={{
@@ -282,8 +289,8 @@ export function CartDrawer() {
                   onClick={() => dispatch({ type: "CLOSE_CART" })}
                   className="w-full flex items-center justify-center gap-2 py-4 transition-all"
                   style={{
-                    backgroundColor: "var(--brand-wine)",
-                    color: "var(--brand-base)",
+                    backgroundColor: "var(--brand-btn-bg)",
+                    color: "var(--brand-btn-text)",
                     textDecoration: "none",
                     fontWeight: 700,
                     fontSize: "var(--text-sm)",
@@ -291,8 +298,8 @@ export function CartDrawer() {
                     textTransform: "uppercase",
                     fontFamily: "var(--font-body)",
                   }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine-dark1)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine)")}
+                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
                 >
                   Check Out <ArrowRight size={16} />
                 </Link>

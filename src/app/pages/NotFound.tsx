@@ -54,12 +54,14 @@ export function NotFound() {
             to="/"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold transition-all"
             style={{
-              backgroundColor: "var(--brand-wine)",
-              color: "var(--brand-base)",
+              backgroundColor: "var(--brand-btn-bg)",
+              color: "var(--brand-btn-text)",
               borderRadius: "var(--radius-pill)",
               textDecoration: "none",
               fontSize: "var(--text-base)",
             }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
           >
             <Home size={16} /> Go Home
           </Link>

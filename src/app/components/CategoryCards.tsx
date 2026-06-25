@@ -10,16 +10,24 @@ const MERGED_CATEGORIES = [
     ...CATEGORIES.find((c) => c.id === "fryums")!,
     name: "Pickles",
     slug: "pickles",
+    /* Panoramic banner color for this category */
+    bannerColor: "#FF0000",
+    bannerTextColor: "#fff",
   },
   {
     ...CATEGORIES.find((c) => c.id === "combos")!,
     name: "Podies",
     slug: "podies",
+    bannerColor: "#FF7726",
+    bannerTextColor: "#fff",
   },
   {
     ...CATEGORIES.find((c) => c.id === "no-garlic")!,
     name: "Pachadies",
     slug: "pachadies",
+    bannerColor: "#FFBA2E",
+    /* Amber banner is light — use dark text for accessibility */
+    bannerTextColor: "#1a0a0e",
   },
 ];
 
@@ -78,50 +86,79 @@ function SmallCard({
         className="relative block overflow-hidden group"
         style={{
           textDecoration: "none",
-          height: 160,
           borderRadius: "var(--radius-card)",
           boxShadow: hovered ? "var(--shadow-lg)" : "var(--shadow-sm)",
           transition: "box-shadow 0.3s ease",
+          display: "flex",
+          flexDirection: "column",
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <img
-          src={category.image}
-          alt={category.name}
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            transform: hovered ? "scale(1.08)" : "scale(1)",
-            transition: "transform 0.5s ease",
-          }}
-        />
+        {/* ── Panoramic color banner at the top of each category card ── */}
         <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(180deg, rgba(26,10,14,0.08) 0%, rgba(26,10,14,0.65) 100%)" }}
-        />
-        <div
-          className="absolute inset-0 transition-opacity duration-300"
           style={{
-            background: "rgba(0,48,73,0.45)",
-            backdropFilter: hovered ? "blur(1px)" : "none",
-            opacity: hovered ? 1 : 0,
+            backgroundColor: category.bannerColor,
+            padding: "8px 16px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "padding 0.3s ease",
           }}
-        />
-        <div className="absolute inset-0 flex items-end p-4">
-          <h3
+        >
+          <span
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 700,
-              fontSize: "clamp(16px, 3vw, 20px)",
-              color: "var(--brand-base)",
+              fontSize: "11px",
+              letterSpacing: "0.18em",
               textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              transition: "transform 0.22s ease",
-              transform: hovered ? "translateY(-4px)" : "translateY(0)",
+              color: category.bannerTextColor,
             }}
           >
             {category.name}
-          </h3>
+          </span>
+        </div>
+
+        {/* ── Image section ── */}
+        <div className="relative overflow-hidden" style={{ height: 140 }}>
+          <img
+            src={category.image}
+            alt={category.name}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              transform: hovered ? "scale(1.08)" : "scale(1)",
+              transition: "transform 0.5s ease",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(180deg, rgba(26,10,14,0.08) 0%, rgba(26,10,14,0.65) 100%)" }}
+          />
+          <div
+            className="absolute inset-0 transition-opacity duration-300"
+            style={{
+              background: "rgba(0,48,73,0.45)",
+              backdropFilter: hovered ? "blur(1px)" : "none",
+              opacity: hovered ? 1 : 0,
+            }}
+          />
+          <div className="absolute inset-0 flex items-end p-4">
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: "clamp(16px, 3vw, 20px)",
+                color: "var(--brand-base)",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                transition: "transform 0.22s ease",
+                transform: hovered ? "translateY(-4px)" : "translateY(0)",
+              }}
+            >
+              {category.name}
+            </h3>
+          </div>
         </div>
       </Link>
     </motion.div>

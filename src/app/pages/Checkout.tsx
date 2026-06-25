@@ -77,8 +77,8 @@ export function Checkout() {
           to="/collections/all"
           className="px-6 py-3"
           style={{
-            backgroundColor: "var(--brand-wine)",
-            color: "var(--brand-base)",
+            backgroundColor: "var(--brand-btn-bg)",
+            color: "var(--brand-btn-text)",
             borderRadius: "var(--radius-pill)",
             textDecoration: "none",
             fontWeight: 600,
@@ -167,12 +167,14 @@ export function Checkout() {
               onClick={() => dispatch({ type: "CLEAR_CART" })}
               className="flex-1 py-3 text-center font-semibold transition-all"
               style={{
-                backgroundColor: "var(--brand-wine)",
+                backgroundColor: "var(--brand-btn-bg)",
                 borderRadius: "var(--radius-pill)",
-                color: "var(--brand-base)",
+                color: "var(--brand-btn-text)",
                 textDecoration: "none",
                 fontSize: "var(--text-base)",
               }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
             >
               Continue Shopping
             </Link>
@@ -297,12 +299,14 @@ export function Checkout() {
                     onClick={() => setStep("shipping")}
                     className="mt-8 w-full py-4 font-bold flex items-center justify-center gap-2 transition-all"
                     style={{
-                      backgroundColor: "var(--brand-wine)",
-                      color: "var(--brand-base)",
+                      backgroundColor: "var(--brand-btn-bg)",
+                      color: "var(--brand-btn-text)",
                       borderRadius: "var(--radius-pill)",
                       fontSize: "var(--text-base)",
                       border: "none",
                     }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
                   >
                     Continue to Shipping <ChevronRight size={18} />
                   </button>
@@ -366,7 +370,9 @@ export function Checkout() {
                     <button
                       onClick={() => setStep("payment")}
                       className="flex-1 py-4 font-bold flex items-center justify-center gap-2 transition-all"
-                      style={{ backgroundColor: "var(--brand-wine)", color: "var(--brand-base)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}
+                      style={{ backgroundColor: "var(--brand-btn-bg)", color: "var(--brand-btn-text)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
                     >
                       Continue to Payment <ChevronRight size={18} />
                     </button>
@@ -414,7 +420,9 @@ export function Checkout() {
                     <button
                       onClick={() => setStep("confirmation")}
                       className="flex-1 py-4 font-bold flex items-center justify-center gap-2"
-                      style={{ backgroundColor: "var(--brand-wine)", color: "var(--brand-base)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}
+                      style={{ backgroundColor: "var(--brand-btn-bg)", color: "var(--brand-btn-text)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
                     >
                       <Lock size={16} /> Pay ₹{grandTotal}
                     </button>
@@ -441,7 +449,9 @@ export function Checkout() {
                 {state.items.map((item) => (
                   <div key={`${item.product.id}-${item.selectedWeight}`} className="flex gap-3 items-start">
                     <div className="relative">
-                      <img src={item.product.image} alt={item.product.name} className="w-14 h-14 object-cover" style={{ borderRadius: "var(--radius-input)" }} />
+                      <div style={{ width: 56, height: 56, borderRadius: "var(--radius-input)", backgroundColor: "#F7F2E8", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <img src={item.product.image} alt={item.product.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", padding: "6%" }} />
+                      </div>
                       <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--brand-bronze)", color: "white", fontSize: 10, fontWeight: 700 }}>
                         {item.quantity}
                       </span>

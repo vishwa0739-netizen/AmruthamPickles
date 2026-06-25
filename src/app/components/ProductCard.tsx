@@ -39,13 +39,37 @@ export function ProductCard({ product, showBrand = true }: Props) {
       style={{ display: "flex", flexDirection: "column", height: "100%" }}
     >
       <Link to={`/products/${product.slug}`} style={{ textDecoration: "none", display: "flex", flexDirection: "column", flex: 1 }}>
-        {/* Image container — square, no border-radius (matching reference) */}
-        <div className="relative overflow-hidden" style={{ aspectRatio: "1/1" }}>
+        {/* Image container — 4:5 portrait ratio, contain so full jar always visible */}
+        <div
+          className="relative overflow-hidden"
+          style={{
+            aspectRatio: "4/5",
+            /* Warm cream background matches Amrutham brand and complements the jar labels */
+            backgroundColor: "#F7F2E8",
+          }}
+        >
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-500"
-            style={{ transform: hovered ? "scale(1.05)" : "scale(1)" }}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full transition-transform duration-500"
+            style={{
+              objectFit: "contain",
+              /* 45% pulls the jar label into the visual center of the card */
+              objectPosition: "center 45%",
+              transform: hovered ? "scale(1.07)" : "scale(1)",
+              imageRendering: "auto",
+              padding: "4% 5%",
+            }}
+          />
+          {/* Subtle inner vignette on hover for depth */}
+          <div
+            className="absolute inset-0 pointer-events-none transition-opacity duration-400"
+            style={{
+              opacity: hovered ? 1 : 0,
+              background: "radial-gradient(ellipse at center, transparent 55%, rgba(26,10,14,0.06) 100%)",
+            }}
           />
 
           {/* Sold Out overlay */}
@@ -213,16 +237,16 @@ export function ProductCard({ product, showBrand = true }: Props) {
             style={{
               marginTop: "auto",
               backgroundColor: added
-                ? "var(--brand-bronze)"
+                ? "var(--brand-btn-bg)"
                 : product.soldOut
                 ? "rgba(26,10,14,0.08)"
                 : "transparent",
               color: added
-                ? "white"
+                ? "var(--brand-btn-text)"
                 : product.soldOut
                 ? "rgba(26,10,14,0.3)"
                 : "var(--foreground)",
-              border: `1px solid ${added ? "var(--brand-bronze)" : product.soldOut ? "rgba(26,10,14,0.15)" : "rgba(26,10,14,0.2)"}`,
+              border: `1px solid ${added ? "var(--brand-btn-bg)" : product.soldOut ? "rgba(26,10,14,0.15)" : "rgba(26,10,14,0.2)"}`,
               fontFamily: "var(--font-body)",
               fontWeight: 700,
               fontSize: "var(--text-sm)",
@@ -232,9 +256,9 @@ export function ProductCard({ product, showBrand = true }: Props) {
             }}
             onMouseEnter={(e) => {
               if (!added && !product.soldOut) {
-                (e.currentTarget as HTMLElement).style.backgroundColor = "var(--foreground)";
-                (e.currentTarget as HTMLElement).style.color = "var(--brand-base)";
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--foreground)";
+                (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)";
+                (e.currentTarget as HTMLElement).style.color = "var(--brand-btn-text)";
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--brand-btn-bg)";
               }
             }}
             onMouseLeave={(e) => {

@@ -81,9 +81,9 @@ export function Account() {
               onClick={() => setActiveTab(t.id)}
               className="flex items-center gap-2 px-5 py-3 shrink-0 transition-all"
               style={{
-                backgroundColor: activeTab === t.id ? "var(--brand-wine)" : "white",
-                color: activeTab === t.id ? "var(--brand-base)" : "var(--brand-wine)",
-                border: `2px solid ${activeTab === t.id ? "var(--brand-wine)" : "rgba(0,48,73,0.15)"}`,
+                backgroundColor: activeTab === t.id ? "var(--brand-btn-bg)" : "white",
+                color: activeTab === t.id ? "var(--brand-btn-text)" : "var(--brand-wine)",
+                border: `2px solid ${activeTab === t.id ? "var(--brand-btn-bg)" : "rgba(0,48,73,0.15)"}`,
                 borderRadius: "var(--radius-pill)",
                 fontSize: "var(--text-sm)",
                 fontWeight: 600,
@@ -137,7 +137,9 @@ export function Account() {
                   <button
                     type="submit"
                     className="py-4 font-bold mt-2 transition-all"
-                    style={{ backgroundColor: "var(--brand-wine)", color: "var(--brand-base)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}
+                    style={{ backgroundColor: "var(--brand-btn-bg)", color: "var(--brand-btn-text)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)")}
                   >
                     Sign In
                   </button>
@@ -175,7 +177,7 @@ export function Account() {
                     <label style={{ display: "block", fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--brand-wine)", marginBottom: 6 }}>Password</label>
                     <input value={signupForm.password} onChange={(e) => setSignupForm({ ...signupForm, password: e.target.value })} type="password" placeholder="Min. 8 characters" style={INPUT} required onFocus={(e) => (e.target.style.borderColor = "var(--brand-bronze)")} onBlur={(e) => (e.target.style.borderColor = "rgba(0,48,73,0.12)")} />
                   </div>
-                  <button type="submit" className="py-4 font-bold mt-2" style={{ backgroundColor: "var(--brand-wine)", color: "var(--brand-base)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}>
+                  <button type="submit" className="py-4 font-bold mt-2" style={{ backgroundColor: "var(--brand-btn-bg)", color: "var(--brand-btn-text)", borderRadius: "var(--radius-pill)", fontSize: "var(--text-base)", border: "none" }}>
                     Create Account
                   </button>
                 </form>
@@ -221,7 +223,7 @@ export function Account() {
                   <Heart size={48} style={{ color: "rgba(0,48,73,0.2)", margin: "0 auto 16px" }} />
                   <p style={{ fontFamily: "var(--font-display)", fontSize: "var(--text-xl)", color: "var(--brand-wine)", marginBottom: 8 }}>Your wishlist is empty</p>
                   <p style={{ fontSize: "var(--text-sm)", color: "rgba(26,10,14,0.5)", marginBottom: 24 }}>Save products you love by clicking the heart icon.</p>
-                  <Link to="/collections/all" style={{ backgroundColor: "var(--brand-wine)", color: "var(--brand-base)", borderRadius: "var(--radius-pill)", padding: "12px 28px", textDecoration: "none", fontWeight: 600 }}>
+                  <Link to="/collections/all" style={{ backgroundColor: "var(--brand-btn-bg)", color: "var(--brand-btn-text)", borderRadius: "var(--radius-pill)", padding: "12px 28px", textDecoration: "none", fontWeight: 600 }}>
                     Browse Products
                   </Link>
                 </div>

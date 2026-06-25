@@ -31,8 +31,8 @@ export function ProductDetail() {
           to="/collections/all"
           className="px-6 py-3"
           style={{
-            backgroundColor: "var(--brand-wine)",
-            color: "var(--brand-base)",
+            backgroundColor: "var(--brand-btn-bg)",
+            color: "var(--brand-btn-text)",
             borderRadius: "var(--radius-pill)",
             textDecoration: "none",
             fontWeight: 600,
@@ -99,10 +99,14 @@ export function ProductDetail() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
           {/* Gallery */}
           <div>
-            {/* Main image */}
+            {/* Main image — 4:5 portrait ratio, contain so full jar always visible */}
             <div
               className="relative overflow-hidden cursor-zoom-in mb-3"
-              style={{ borderRadius: "var(--radius-card)", aspectRatio: "1/1" }}
+              style={{
+                borderRadius: "var(--radius-card)",
+                aspectRatio: "4/5",
+                backgroundColor: "#F7F2E8",
+              }}
               onClick={() => setZoomed(!zoomed)}
             >
               <AnimatePresence mode="wait">
@@ -114,7 +118,14 @@ export function ProductDetail() {
                   transition={{ duration: 0.3 }}
                   src={product.images[imgIndex]}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full"
+                  style={{
+                    objectFit: "contain",
+                    objectPosition: "center 45%",
+                    padding: "4% 5%",
+                  }}
                 />
               </AnimatePresence>
 
@@ -166,7 +177,19 @@ export function ProductDetail() {
                       boxShadow: i === imgIndex ? "var(--shadow-sm)" : "none",
                     }}
                   >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
+                    <img
+                      src={img}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full"
+                      style={{
+                        objectFit: "contain",
+                        objectPosition: "center center",
+                        padding: "4%",
+                        backgroundColor: "#F7F2E8",
+                      }}
+                    />
                   </button>
                 ))}
               </div>
@@ -366,18 +389,18 @@ export function ProductDetail() {
                 whileTap={{ scale: 0.97 }}
                 className="flex-1 flex items-center justify-center gap-2 py-3 transition-all font-bold"
                 style={{
-                  backgroundColor: added ? "var(--brand-bronze)" : "var(--brand-wine)",
-                  color: "var(--brand-base)",
+                  backgroundColor: added ? "var(--brand-bronze)" : "var(--brand-btn-bg)",
+                  color: added ? "white" : "var(--brand-btn-text)",
                   borderRadius: "var(--radius-pill)",
                   fontSize: "var(--text-base)",
                   border: "none",
                   boxShadow: "var(--shadow-md)",
                 }}
                 onMouseEnter={(e) => {
-                  if (!added) (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine-dark1)";
+                  if (!added) (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg-hover)";
                 }}
                 onMouseLeave={(e) => {
-                  if (!added) (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-wine)";
+                  if (!added) (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)";
                 }}
               >
                 {added ? (
@@ -476,8 +499,8 @@ export function ProductDetail() {
             onClick={handleAddToCart}
             className="w-full py-4 font-bold flex items-center justify-center gap-2 transition-all active:scale-98"
             style={{
-              backgroundColor: added ? "var(--brand-bronze)" : "var(--brand-wine)",
-              color: "var(--brand-base)",
+              backgroundColor: added ? "var(--brand-bronze)" : "var(--brand-btn-bg)",
+              color: added ? "white" : "var(--brand-btn-text)",
               borderRadius: "var(--radius-pill)",
               fontSize: "var(--text-base)",
               border: "none",

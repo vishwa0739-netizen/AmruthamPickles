@@ -238,11 +238,14 @@ export function SearchModal({ isOpen, onClose }: Props) {
                         ((e.currentTarget as HTMLElement).style.backgroundColor = "transparent")
                       }
                     >
-                      <img
-                        src={p.image}
-                        alt={p.name}
-                        className="w-9 h-9 object-cover rounded shrink-0"
-                      />
+                      <div className="shrink-0" style={{ width: 36, height: 36, borderRadius: 6, backgroundColor: "#F7F2E8", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <img
+                          src={p.image}
+                          alt={p.name}
+                          loading="lazy"
+                          style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", padding: "5%" }}
+                        />
+                      </div>
                       <div className="min-w-0">
                         <p
                           className="line-clamp-1"
@@ -397,19 +400,21 @@ export function SearchModal({ isOpen, onClose }: Props) {
                             textDecoration: "none",
                           }}
                         >
-                          {/* Product image */}
                           <div
                             className="overflow-hidden mb-2"
                             style={{
                               width: "140px",
                               height: "140px",
                               borderRadius: "6px",
+                              backgroundColor: "#F7F2E8",
                             }}
                           >
                             <img
                               src={product.image}
                               alt={product.name}
-                              className="w-full h-full object-cover transition-transform duration-300"
+                              loading="lazy"
+                              className="w-full h-full transition-transform duration-300"
+                              style={{ objectFit: "contain", objectPosition: "center", padding: "6%" }}
                               onMouseEnter={(e) =>
                                 ((e.currentTarget as HTMLElement).style.transform = "scale(1.04)")
                               }
