@@ -233,40 +233,20 @@ export function ProductCard({ product, showBrand = true }: Props) {
           <button
             onClick={handleQuickAdd}
             disabled={product.soldOut}
-            className="product-card-quick-add w-full py-3 transition-all active:scale-[0.98]"
+            className="product-card-quick-add w-full py-3 active:scale-[0.98]"
             style={{
               marginTop: "auto",
-              backgroundColor: added
-                ? "var(--brand-btn-bg)"
-                : product.soldOut
-                ? "rgba(26,10,14,0.08)"
-                : "transparent",
-              color: added
-                ? "var(--brand-btn-text)"
-                : product.soldOut
-                ? "rgba(26,10,14,0.3)"
-                : "var(--foreground)",
-              border: `1px solid ${added ? "var(--brand-btn-bg)" : product.soldOut ? "rgba(26,10,14,0.15)" : "rgba(26,10,14,0.2)"}`,
+              ...(product.soldOut && {
+                backgroundColor: "rgba(26,10,14,0.08)",
+                color: "rgba(26,10,14,0.3)",
+                border: "1px solid rgba(26,10,14,0.15)",
+              }),
               fontFamily: "var(--font-body)",
               fontWeight: 700,
               fontSize: "var(--text-sm)",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               cursor: product.soldOut ? "not-allowed" : "pointer",
-            }}
-            onMouseEnter={(e) => {
-              if (!added && !product.soldOut) {
-                (e.currentTarget as HTMLElement).style.backgroundColor = "var(--brand-btn-bg)";
-                (e.currentTarget as HTMLElement).style.color = "var(--brand-btn-text)";
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--brand-btn-bg)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!added && !product.soldOut) {
-                (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
-                (e.currentTarget as HTMLElement).style.color = "var(--foreground)";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(26,10,14,0.2)";
-              }
             }}
           >
             {product.soldOut ? "SOLD OUT" : added ? "✓ ADDED!" : "QUICK ADD"}
