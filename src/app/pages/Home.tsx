@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { HeroCarousel } from "../components/HeroCarousel";
 import { CategoryCards } from "../components/CategoryCards";
 import { BestSellers } from "../components/BestSellers";
 import { NewArrivals } from "../components/NewArrivals";
 import { TestimonialsCarousel } from "../components/TestimonialsCarousel";
 import { InstagramStrip } from "../components/InstagramStrip";
-import { IntroSplash } from "../components/IntroSplash";
 
 /*
   Home page layout — updated per spec:
@@ -26,29 +24,10 @@ import { IntroSplash } from "../components/IntroSplash";
 */
 
 export function Home() {
-  /*
-   * introComplete starts false if this is the very first session visit
-   * (IntroSplash will be visible). If the session flag is already set
-   * (repeat visit), IntroSplash immediately calls onComplete() which
-   * sets this to true, and HeroCarousel skips the stagger delay.
-   */
-  const alreadyPlayed = sessionStorage.getItem("intro_played") === "1";
-  const prefersReduced =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  const [introComplete, setIntroComplete] = useState(
-    alreadyPlayed || prefersReduced
-  );
-
   return (
     <>
-      {/* Intro splash: fixed overlay, highest z-index.
-          Homepage content below is fully mounted and painted immediately. */}
-      <IntroSplash onComplete={() => setIntroComplete(true)} />
-
       {/* 01 — Hero Carousel (receives introComplete for text stagger-in) */}
-      <HeroCarousel introComplete={introComplete} />
+      <HeroCarousel introComplete={true} />
 
       {/* 02 — Best Sellers (sits directly under Carousel, no grid in between) */}
       <BestSellers />

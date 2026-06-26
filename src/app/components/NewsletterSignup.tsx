@@ -60,8 +60,9 @@ export function NewsletterSignup() {
 
           <h2
             style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
+              fontFamily: "'Playfair Display', var(--font-display), serif",
+              fontWeight: 900,
+              fontStyle: "italic",
               fontSize: "clamp(24px, 4.5vw, 40px)",
               color: "var(--brand-wine)",
               marginBottom: 12,

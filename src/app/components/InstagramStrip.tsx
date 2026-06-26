@@ -1,69 +1,50 @@
 import { useState, useRef } from "react";
 import { motion } from "motion/react";
-import { ChevronLeft, ChevronRight, ExternalLink, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { BRAND } from "../data";
 
-/*
-  InstagramStrip — converted from static photo grid to a slideable carousel.
-  Videos are embedded as autoplay/muted Instagram-style clips.
-  Since live Instagram oEmbed requires an access token, we simulate with
-  high-quality food videos from reliable CDN URLs (Unsplash video equivalents).
-  The section renders from Layout.tsx (shared component) — not duplicated per page.
-*/
+import heroPicklesImg from "@/imports/hero_slide_pickles.jpg";
+import heroPodiesImg from "@/imports/hero_slide_podies.jpg";
+import heroPachadiesImg from "@/imports/hero_slide_pachadies.jpg";
 
 const INSTAGRAM_VIDEOS = [
   {
     id: "1",
-    // Using placeholder embed-friendly video via HTML5 video element
-    videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80",
-    likes: 1247,
-    caption: "Fresh Green Chilly Pachadi — made to order 🌶️",
+    embedUrl: "https://www.instagram.com/reel/C4SrlYMRgfT/embed/?hidecaption=true",
   },
   {
     id: "2",
-    videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster: "https://images.unsplash.com/photo-1716816211590-c15a328a5ff0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80",
-    likes: 832,
-    caption: "Our famous Dhal Podi — stone-ground tradition 🥣",
+    embedUrl: "https://www.instagram.com/reel/C6QyMr_yM0Z/embed/?hidecaption=true",
   },
   {
     id: "3",
-    videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80",
-    likes: 2103,
-    caption: "Idly Podi 2.0 — no garlic, all flavour ✨",
+    embedUrl: "https://www.instagram.com/reel/C5Ys8z5Ru6s/embed/?hidecaption=true",
   },
   {
     id: "4",
-    videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80",
-    likes: 956,
-    caption: "Temple-style Pulihora Mix — pure comfort 🍛",
-  },
-  {
-    id: "5",
-    videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster: "https://images.unsplash.com/photo-1664791461482-79f5deee490f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80",
-    likes: 1789,
-    caption: "Avakaya Mango Pickle — Andhra's finest 🥭",
-  },
-  {
-    id: "6",
-    videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster: "https://images.unsplash.com/photo-1729698597774-5c9f7aed07d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80",
-    likes: 643,
-    caption: "Essentials Gift Box — the perfect present 🎁",
+    embedUrl: "https://www.instagram.com/reel/C4R3UFyi6Hw/embed/?hidecaption=true",
   },
 ];
 
 const STORY_HIGHLIGHTS = [
-  { label: "Innovations", color: "linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)", postIdx: 0 },
-  { label: "Story tales", color: "linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)", postIdx: 1 },
-  { label: "Quotes", color: "linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)", postIdx: 2 },
-  { label: "Menu", color: "linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)", postIdx: 3 },
-  { label: "Podies", color: "linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)", postIdx: 4 },
-  { label: "Pickles", color: "linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)", postIdx: 5 },
+  {
+    label: "Pickles Highlight",
+    color: "linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)",
+    poster: heroPicklesImg,
+    url: "https://www.instagram.com/stories/highlights/18012384149326367/?__pwa=1",
+  },
+  {
+    label: "Podies Highlight",
+    color: "linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)",
+    poster: heroPodiesImg,
+    url: "https://www.instagram.com/stories/highlights/18012384149326367/?__pwa=1",
+  },
+  {
+    label: "Pachadies Highlight",
+    color: "linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)",
+    poster: heroPachadiesImg,
+    url: "https://www.instagram.com/stories/highlights/18012384149326367/?__pwa=1",
+  },
 ];
 
 export function InstagramStrip() {
@@ -107,12 +88,12 @@ export function InstagramStrip() {
             </p>
             <h2
               className="underline-anim"
-              style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "clamp(18px, 4vw, 28px)", letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--foreground)", marginBottom: 8 }}
+              style={{ fontFamily: "'Playfair Display', var(--font-display), serif", fontWeight: 900, fontStyle: "italic", fontSize: "clamp(22px, 4vw, 34px)", letterSpacing: "0.18em", textTransform: "uppercase", color: "#1a0a0e", marginBottom: 8 }}
             >
               #{BRAND.name.replace(/\s/g, "").toUpperCase()} ON INSTAGRAM
             </h2>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/amruthampicklesandspices/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-75"
@@ -127,25 +108,27 @@ export function InstagramStrip() {
         {/* Story Highlights Row */}
         <div className="flex gap-5 overflow-x-auto pb-4 mb-8 justify-start md:justify-center scrollbar-hide">
           {STORY_HIGHLIGHTS.map((story, i) => (
-            <motion.button
+            <motion.a
               key={story.label}
-              onClick={() => setActiveHighlight(activeHighlight === i ? null : i)}
+              href={story.url}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.75 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: i * 0.07 }}
               className="flex flex-col items-center gap-1.5 shrink-0"
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+              style={{ textDecoration: "none", cursor: "pointer", padding: 0 }}
             >
-              <div className="rounded-full p-0.5" style={{ background: activeHighlight === i ? "rgba(26,10,14,0.15)" : story.color, width: 68, height: 68, transition: "all 0.25s ease", transform: activeHighlight === i ? "scale(1.08)" : "scale(1)" }}>
+              <div className="rounded-full p-0.5" style={{ background: story.color, width: 68, height: 68 }}>
                 <div className="w-full h-full rounded-full overflow-hidden" style={{ border: "2.5px solid var(--brand-base)" }}>
-                  <img src={INSTAGRAM_VIDEOS[story.postIdx]?.poster} alt={story.label} className="w-full h-full object-cover" />
+                  <img src={story.poster} alt={story.label} className="w-full h-full object-cover" />
                 </div>
               </div>
-              <span style={{ fontSize: 10, color: "var(--foreground)", fontWeight: activeHighlight === i ? 700 : 400, maxWidth: 64, textAlign: "center", lineHeight: 1.3, transition: "font-weight 0.2s" }}>
+              <span style={{ fontSize: 10, color: "var(--foreground)", fontWeight: 500, maxWidth: 84, textAlign: "center", lineHeight: 1.3 }}>
                 {story.label}
               </span>
-            </motion.button>
+            </motion.a>
           ))}
         </div>
 
@@ -176,35 +159,42 @@ export function InstagramStrip() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="relative overflow-hidden cursor-pointer group shrink-0"
+                className="relative shrink-0"
                 style={{
-                  flex: "0 0 calc(50% - 6px)",
+                  flex: "0 0 260px",
+                  height: "460px",
                   scrollSnapAlign: "start",
-                  aspectRatio: "1/1",
-                  borderRadius: 0,
+                  borderRadius: 8,
+                  boxShadow: "0 4px 12px rgba(26,10,14,0.06)",
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                {/* Autoplay muted video */}
-                <video
-                  ref={(el) => { videoRefs.current[i] = el; }}
-                  src={video.videoSrc}
-                  poster={video.poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover"
-                  style={{ transition: "transform 0.5s ease" }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLVideoElement).style.transform = "scale(1.04)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLVideoElement).style.transform = "scale(1)")}
-                />
-                {/* Play icon overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100"
-                  style={{ backgroundColor: "rgba(0,48,73,0.45)", transition: "opacity 0.3s ease", backdropFilter: "blur(2px)" }}>
-                  <Play size={28} fill="white" color="white" style={{ marginBottom: 8 }} />
-                  <p style={{ fontSize: 10, color: "rgba(255,255,255,0.9)", textAlign: "center", padding: "0 12px", lineHeight: 1.4 }}>
-                    {video.caption}
-                  </p>
+                {/* Clip mask to hide Instagram header/footer */}
+                <div
+                  style={{
+                    position: "absolute",
+                    /* Push iframe so header (≈56px) and footer (≈68px) fall outside */
+                    top: "-56px",
+                    left: "-1px",
+                    right: "-1px",
+                    bottom: "-68px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <iframe
+                    src={video.embedUrl}
+                    title={`Instagram Reel ${video.id}`}
+                    style={{
+                      width: "100%",
+                      height: "calc(100% + 124px)",   /* fills the expanded div */
+                      border: "none",
+                      display: "block",
+                    }}
+                    scrolling="no"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
                 </div>
               </motion.div>
             ))}
@@ -241,7 +231,7 @@ export function InstagramStrip() {
         {/* CTA */}
         <div className="text-center mt-6">
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/amruthampicklesandspices/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block transition-all active:scale-95"

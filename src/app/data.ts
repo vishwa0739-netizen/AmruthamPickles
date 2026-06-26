@@ -1,3 +1,16 @@
+import mangoImg from '@/imports/Mango.png';
+import chillyImg from '@/imports/Chilly.png';
+import dhalImg from '@/imports/dhal.png';
+import idliPodiImg from '@/imports/idliPodi.png';
+import peanutImg from '@/imports/peanut.png';
+import fryumsImg from '@/imports/fryums.png';
+import lemonImg from '@/imports/Lemon.png';
+import giftImg from '@/imports/gift.png';
+import spicesImg from '@/imports/spices.png';
+import heroPicklesImg from '@/imports/new_carousel_1.jpg';
+import heroPachadiesImg from '@/imports/new_carousel_2.jpg';
+import heroPodiesImg from '@/imports/new_carousel_3.jpg';
+
 export type Product = {
   id: string;
   slug: string;
@@ -113,10 +126,10 @@ export const PRODUCTS: Product[] = [
     comparePrice: 260,
     rating: 4.9,
     reviewCount: 342,
-    image: "/prod_jar_dark.jpg",
+    image: mangoImg,
     images: [
-      "/prod_jar_dark.jpg",
-      "/prod_jar_beige.jpg",
+      mangoImg,
+      mangoImg,
     ],
     weights: [
       { label: "250g", price: 220 },
@@ -139,10 +152,10 @@ export const PRODUCTS: Product[] = [
     price: 180,
     rating: 4.8,
     reviewCount: 218,
-    image: "/prod_jars_pyramid.jpg",
+    image: chillyImg,
     images: [
-      "/prod_jars_pyramid.jpg",
-      "/prod_jar_dark.jpg",
+      chillyImg,
+      chillyImg,
     ],
     weights: [
       { label: "200g", price: 180 },
@@ -164,10 +177,10 @@ export const PRODUCTS: Product[] = [
     price: 180,
     rating: 4.9,
     reviewCount: 412,
-    image: "/prod_jar_dark.jpg",
+    image: dhalImg,
     images: [
-      "/prod_jar_dark.jpg",
-      "/prod_jars_pyramid.jpg",
+      dhalImg,
+      dhalImg,
     ],
     weights: [
       { label: "100g", price: 180 },
@@ -190,10 +203,10 @@ export const PRODUCTS: Product[] = [
     price: 180,
     rating: 4.8,
     reviewCount: 234,
-    image: "/prod_jar_beige.jpg",
+    image: idliPodiImg,
     images: [
-      "/prod_jar_beige.jpg",
-      "/prod_jar_dark.jpg",
+      idliPodiImg,
+      idliPodiImg,
     ],
     weights: [
       { label: "100g", price: 180 },
@@ -215,10 +228,10 @@ export const PRODUCTS: Product[] = [
     price: 199,
     rating: 4.7,
     reviewCount: 167,
-    image: "/prod_jar_beige.jpg",
+    image: peanutImg,
     images: [
-      "/prod_jar_beige.jpg",
-      "/prod_jar_beige.jpg",
+      peanutImg,
+      peanutImg,
     ],
     weights: [
       { label: "100g", price: 199 },
@@ -240,10 +253,10 @@ export const PRODUCTS: Product[] = [
     price: 120,
     rating: 4.6,
     reviewCount: 89,
-    image: "/prod_jar_dark.jpg",
+    image: fryumsImg,
     images: [
-      "/prod_jar_dark.jpg",
-      "/prod_jar_beige.jpg",
+      fryumsImg,
+      fryumsImg,
     ],
     weights: [
       { label: "100g", price: 120 },
@@ -258,28 +271,28 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "7",
-    slug: "gods-own-pulihora-mix",
-    name: "God's Own Pulihora Mix",
-    tagline: "Temple-style tamarind rice spice mix",
-    category: "podies",
+    slug: "lemon-pickle",
+    name: "Lemon pickle",
+    tagline: "Tangy and zesty — a classic pickle",
+    category: "pickles",
     price: 160,
     rating: 4.8,
     reviewCount: 145,
-    image: "/prod_jars_pyramid.jpg",
+    image: lemonImg,
     images: [
-      "/prod_jars_pyramid.jpg",
-      "/prod_jar_dark.jpg",
+      lemonImg,
+      lemonImg,
     ],
     weights: [
       { label: "100g", price: 160 },
       { label: "200g", price: 290 },
     ],
     spiceLevels: ["Medium"],
-    description: "Our signature Pulihora spice mix modelled on temple prasadam — balanced, fragrant, and deeply satisfying. Just add cooked rice and tamarind paste.",
-    ingredients: "Channa dal, Urad dal, Red chilli, Mustard, Curry leaves, Turmeric, Tamarind, Sesame seeds, Groundnuts",
+    description: "Our signature Lemon pickle — balanced, fragrant, and deeply satisfying. Just add cooked rice and tamarind paste.",
+    ingredients: "Lemon, Mustard seeds, Fenugreek, Turmeric, Asafoetida, Rock salt, Sesame oil",
     shelfLife: "4 months from manufacture",
     newArrival: true,
-    tags: ["podi", "pulihora", "new"],
+    tags: ["pickle", "lemon", "new"],
   },
   {
     id: "8",
@@ -291,10 +304,10 @@ export const PRODUCTS: Product[] = [
     comparePrice: 699,
     rating: 4.9,
     reviewCount: 523,
-    image: "/prod_jar_dark.jpg",
+    image: giftImg,
     images: [
-      "/prod_jar_dark.jpg",
-      "/prod_jar_beige.jpg",
+      giftImg,
+      giftImg,
     ],
     weights: [{ label: "Combo Box", price: 620 }],
     spiceLevels: ["Medium", "Hot"],
@@ -313,10 +326,10 @@ export const PRODUCTS: Product[] = [
     price: 200,
     rating: 4.8,
     reviewCount: 287,
-    image: "/prod_jar_beige.jpg",
+    image: spicesImg,
     images: [
-      "/prod_jar_beige.jpg",
-      "/prod_jars_pyramid.jpg",
+      spicesImg,
+      spicesImg,
     ],
     weights: [
       { label: "200g", price: 200 },
@@ -416,7 +429,7 @@ export const INSTAGRAM_POSTS = [
 export const HERO_SLIDES = [
   {
     id: "1",
-    image: "/hero_slide_pickles.jpg",
+    image: heroPicklesImg,
     eyebrow: "Taste of Andhra in Every Bite",
     headline: "Pickles",
     subhead: "Sun-cured, stone-ground, unapologetically bold",
@@ -425,7 +438,7 @@ export const HERO_SLIDES = [
   },
   {
     id: "2",
-    image: "/hero_slide_podies.jpg",
+    image: heroPachadiesImg,
     eyebrow: "Zero Preservatives · 100% Natural",
     headline: "Podies",
     subhead: "Stone-ground flavour in every spoonful",
@@ -434,7 +447,7 @@ export const HERO_SLIDES = [
   },
   {
     id: "3",
-    image: "/hero_slide_pachadies.jpg",
+    image: heroPodiesImg,
     eyebrow: "Small Batch · Made to Order",
     headline: "Pachadies",
     subhead: "A Gastronomic Gourmet Experience",

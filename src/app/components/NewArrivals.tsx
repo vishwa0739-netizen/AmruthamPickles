@@ -19,12 +19,13 @@ export function NewArrivals() {
             <h2
               className="section-heading"
               style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 400,
-                fontSize: "clamp(18px, 4vw, 24px)",
-                color: "var(--foreground)",
+                fontFamily: "'Playfair Display', var(--font-display), serif",
+                fontWeight: 900,
+                fontStyle: "italic",
+                fontSize: "clamp(22px, 4vw, 34px)",
+                color: "#1a0a0e",
                 textTransform: "uppercase",
-                letterSpacing: "0.15em",
+                letterSpacing: "0.18em",
                 whiteSpace: "nowrap",
               }}
             >

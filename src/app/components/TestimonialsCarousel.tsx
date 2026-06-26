@@ -51,12 +51,13 @@ export function TestimonialsCarousel() {
           <div className="flex-1 h-px" style={{ backgroundColor: "rgba(26,10,14,0.18)" }} />
           <h2
             style={{
-              fontFamily: "var(--font-display)",
+              fontFamily: "'Playfair Display', var(--font-display), serif",
               fontWeight: 900,
-              fontSize: "clamp(18px, 4vw, 28px)",
-              color: "var(--foreground)",
+              fontStyle: "italic",
+              fontSize: "clamp(22px, 4vw, 34px)",
+              color: "#1a0a0e",
               textTransform: "uppercase",
-              letterSpacing: "0.08em",
+              letterSpacing: "0.18em",
               textAlign: "center",
               whiteSpace: "nowrap",
             }}

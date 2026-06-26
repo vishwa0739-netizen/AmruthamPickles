@@ -77,9 +77,12 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
 
   const slide = HERO_SLIDES[current];
 
-  // Center-darkening gradient so centered white text stays legible against any image
-  const overlayGradient =
-    "radial-gradient(ellipse at center, rgba(26,10,14,0.55) 0%, rgba(26,10,14,0.35) 60%, rgba(26,10,14,0.6) 100%)";
+  // Dynamic gradient based on text alignment to keep the opposite product side clear and bright.
+  // Slide 1 (current === 0) has text on the right (shadow on the right).
+  // Slide 2 & 3 (current === 1 or 2) have text on the left (shadow on the left).
+  const getOverlayGradient = (index: number) => {
+    return "none";
+  };
 
   return (
     <>
@@ -108,14 +111,19 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
             className="absolute inset-0"
           >
             <div className="absolute inset-0">
-              <img src={slide.image} alt={slide.headline} className="w-full h-full object-cover" />
-              <div className="absolute inset-0" style={{ background: overlayGradient }} />
+              <img
+                src={slide.image}
+                alt={slide.headline}
+                className="w-full h-full object-cover"
+                style={{ filter: "brightness(1.2)" }}
+              />
+              <div className="absolute inset-0" style={{ background: getOverlayGradient(current) }} />
             </div>
 
-            {/* FIX 2: Full-height flex, items-center + justify-center → centered block */}
-            <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
-              {/* No eyebrow (FIX 1) */}
-              <motion.h1
+            <div className={`relative h-full flex flex-col justify-center px-5 items-start`}>
+              <div className={`flex flex-col max-w-[65%] items-start text-left`}>
+                {/* No eyebrow (FIX 1) */}
+                <motion.h1
                 key={`headline-m-${current}`}
                 initial={{ opacity: 0, y: 14 }}
                 animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
@@ -124,7 +132,7 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                   fontFamily: "var(--font-display)",
                   fontWeight: 900,
                   fontSize: "32px",
-                  color: "#fff",
+                  color: "#330a0a",
                   lineHeight: 1,
                   letterSpacing: "-0.01em",
                   marginBottom: 5,
@@ -140,9 +148,10 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                 transition={{ delay: textReady ? 0.08 : 0.27, duration: 0.35 }}
                 style={{
                   fontFamily: "var(--font-accent)",
+                  fontWeight: 800,
                   fontStyle: "italic",
-                  fontSize: "11px",
-                  color: "rgba(255,255,255,0.82)",
+                  fontSize: "13px",
+                  color: "rgba(51,10,10,0.9)",
                   lineHeight: 1.4,
                   marginBottom: 10,
                 }}
@@ -160,7 +169,7 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                   to={slide.ctaLink}
                   className="inline-block transition-all active:scale-95"
                   style={{
-                    border: "1.5px solid #fff",
+                    border: "1.5px solid #330a0a",
                     color: "#fff",
                     borderRadius: 0,
                     padding: "5px 16px",
@@ -170,20 +179,21 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                     fontSize: "9px",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    backgroundColor: "transparent",
+                    backgroundColor: "#330a0a",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "#fff";
-                    (e.currentTarget as HTMLElement).style.color = "var(--brand-wine)";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = "#330a0a";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "#330a0a";
                     (e.currentTarget as HTMLElement).style.color = "#fff";
                   }}
                 >
                   {slide.cta}
                 </Link>
               </motion.div>
+            </div>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -215,13 +225,19 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
             className="absolute inset-0"
           >
             <div className="absolute inset-0">
-              <img src={slide.image} alt={slide.headline} className="w-full h-full object-cover" />
-              <div className="absolute inset-0" style={{ background: overlayGradient }} />
+              <img
+                src={slide.image}
+                alt={slide.headline}
+                className="w-full h-full object-cover"
+                style={{ filter: "brightness(1.2)" }}
+              />
+              <div className="absolute inset-0" style={{ background: getOverlayGradient(current) }} />
             </div>
 
-            <div className="relative h-full flex flex-col items-center justify-center text-center px-8">
-              {/* No eyebrow (FIX 1) */}
-              <motion.h1
+            <div className={`relative h-full flex flex-col justify-center px-8 items-start pl-16`}>
+              <div className={`flex flex-col max-w-[55%] items-start text-left`}>
+                {/* No eyebrow (FIX 1) */}
+                <motion.h1
                 key={`headline-t-${current}`}
                 initial={{ opacity: 0, y: 18 }}
                 animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
@@ -230,7 +246,7 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                   fontFamily: "var(--font-display)",
                   fontWeight: 900,
                   fontSize: "clamp(42px, 9vw, 72px)",
-                  color: "#fff",
+                  color: "#330a0a",
                   lineHeight: 0.95,
                   letterSpacing: "-0.02em",
                   marginBottom: 12,
@@ -246,9 +262,10 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                 transition={{ delay: textReady ? 0.08 : 0.28, duration: 0.4 }}
                 style={{
                   fontFamily: "var(--font-accent)",
+                  fontWeight: 800,
                   fontStyle: "italic",
-                  fontSize: "clamp(14px, 2.2vw, 20px)",
-                  color: "rgba(255,255,255,0.82)",
+                  fontSize: "clamp(16px, 2.5vw, 22px)",
+                  color: "rgba(51,10,10,0.9)",
                   lineHeight: 1.5,
                   marginBottom: 24,
                   maxWidth: "480px",
@@ -267,7 +284,7 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                   to={slide.ctaLink}
                   className="inline-block transition-all active:scale-95"
                   style={{
-                    border: "2px solid #fff",
+                    border: "2px solid #330a0a",
                     color: "#fff",
                     borderRadius: 0,
                     padding: "10px 32px",
@@ -277,21 +294,21 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                     fontSize: "var(--text-sm)",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    backgroundColor: "transparent",
-                    backdropFilter: "blur(4px)",
+                    backgroundColor: "#330a0a",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "#fff";
-                    (e.currentTarget as HTMLElement).style.color = "var(--brand-wine)";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = "#330a0a";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "#330a0a";
                     (e.currentTarget as HTMLElement).style.color = "#fff";
                   }}
                 >
                   {slide.cta}
                 </Link>
               </motion.div>
+            </div>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -324,13 +341,19 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
             className="absolute inset-0"
           >
             <div className="absolute inset-0">
-              <img src={slide.image} alt={slide.headline} className="w-full h-full object-cover" />
-              <div className="absolute inset-0" style={{ background: overlayGradient }} />
+              <img
+                src={slide.image}
+                alt={slide.headline}
+                className="w-full h-full object-cover"
+                style={{ filter: "brightness(1.2)" }}
+              />
+              <div className="absolute inset-0" style={{ background: getOverlayGradient(current) }} />
             </div>
 
-            <div className="relative h-full flex flex-col items-center justify-center text-center px-12">
-              {/* No eyebrow (FIX 1) */}
-              <motion.h1
+            <div className={`relative h-full flex flex-col justify-center px-12 lg:px-24 items-start pl-20 lg:pl-32`}>
+              <div className={`flex flex-col max-w-[50%] lg:max-w-[45%] items-start text-left`}>
+                {/* No eyebrow (FIX 1) */}
+                <motion.h1
                 key={`headline-d-${current}`}
                 initial={{ opacity: 0, y: 22 }}
                 animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
@@ -339,7 +362,7 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                   fontFamily: "var(--font-display)",
                   fontWeight: 900,
                   fontSize: "clamp(40px, 8vw, 88px)",
-                  color: "#fff",
+                  color: "#330a0a",
                   lineHeight: 0.95,
                   letterSpacing: "-0.02em",
                   marginBottom: 14,
@@ -355,9 +378,10 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                 transition={{ delay: textReady ? 0.08 : 0.3, duration: 0.45 }}
                 style={{
                   fontFamily: "var(--font-accent)",
+                  fontWeight: 800,
                   fontStyle: "italic",
-                  fontSize: "clamp(15px, 2.5vw, 24px)",
-                  color: "rgba(255,255,255,0.82)",
+                  fontSize: "clamp(18px, 3vw, 26px)",
+                  color: "rgba(51,10,10,0.9)",
                   lineHeight: 1.5,
                   marginBottom: 28,
                   maxWidth: "520px",
@@ -376,7 +400,7 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                   to={slide.ctaLink}
                   className="inline-block transition-all active:scale-95"
                   style={{
-                    border: "2px solid #fff",
+                    border: "2px solid #330a0a",
                     color: "#fff",
                     borderRadius: 0,
                     padding: "12px 36px",
@@ -386,21 +410,21 @@ export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
                     fontSize: "var(--text-sm)",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    backgroundColor: "transparent",
-                    backdropFilter: "blur(4px)",
+                    backgroundColor: "#330a0a",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "#fff";
-                    (e.currentTarget as HTMLElement).style.color = "var(--brand-wine)";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = "#330a0a";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "#330a0a";
                     (e.currentTarget as HTMLElement).style.color = "#fff";
                   }}
                 >
                   {slide.cta}
                 </Link>
               </motion.div>
+            </div>
             </div>
           </motion.div>
         </AnimatePresence>

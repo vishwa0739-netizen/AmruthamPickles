@@ -94,13 +94,14 @@ export function BestSellers() {
           <h2
             className="shrink-0 best-sellers-heading"
             style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 400,
-              fontSize: "20px",
-              color: "#232323",
+              fontFamily: "'Playfair Display', var(--font-display), serif",
+              fontWeight: 900,
+              fontSize: "clamp(22px, 4vw, 34px)",
+              color: "#1a0a0e",
               textTransform: "uppercase",
-              letterSpacing: "0.15em",
+              letterSpacing: "0.18em",
               whiteSpace: "nowrap",
+              fontStyle: "italic",
             }}
           >
             Best Sellers

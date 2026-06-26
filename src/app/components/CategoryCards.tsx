@@ -3,6 +3,10 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 import { CATEGORIES } from "../data";
 
+import heroPicklesImg from "@/imports/hero_slide_pickles.jpg";
+import heroPodiesImg from "@/imports/hero_slide_podies.jpg";
+import heroPachadiesImg from "@/imports/hero_slide_pachadies.jpg";
+
 // Step 5: Group A hrefs (Pickles→/pickles, Pachadies→/pachadies, Podies→/podies)
 // transferred to renamed Group B cards. Order preserved: Fryums→Pickles, Combos→Podies, No-Garlic→Pachadies
 const MERGED_CATEGORIES = [
@@ -10,24 +14,19 @@ const MERGED_CATEGORIES = [
     ...CATEGORIES.find((c) => c.id === "fryums")!,
     name: "Pickles",
     slug: "pickles",
-    /* Panoramic banner color for this category */
-    bannerColor: "#FF0000",
-    bannerTextColor: "#fff",
+    image: heroPicklesImg,
   },
   {
     ...CATEGORIES.find((c) => c.id === "combos")!,
     name: "Podies",
     slug: "podies",
-    bannerColor: "#FF7726",
-    bannerTextColor: "#fff",
+    image: heroPodiesImg,
   },
   {
     ...CATEGORIES.find((c) => c.id === "no-garlic")!,
     name: "Pachadies",
     slug: "pachadies",
-    bannerColor: "#FFBA2E",
-    /* Amber banner is light — use dark text for accessibility */
-    bannerTextColor: "#1a0a0e",
+    image: heroPachadiesImg,
   },
 ];
 
@@ -40,12 +39,13 @@ export function CategoryCards() {
           <div className="flex-1 h-px" style={{ backgroundColor: "rgba(26,10,14,0.18)" }} />
           <h2
             style={{
-              fontFamily: "var(--font-display)",
+              fontFamily: "'Playfair Display', var(--font-display), serif",
               fontWeight: 900,
-              fontSize: "clamp(18px, 4vw, 28px)",
-              color: "var(--foreground)",
+              fontStyle: "italic",
+              fontSize: "clamp(22px, 4vw, 34px)",
+              color: "#1a0a0e",
               textTransform: "uppercase",
-              letterSpacing: "0.08em",
+              letterSpacing: "0.18em",
               whiteSpace: "nowrap",
             }}
           >
@@ -95,31 +95,6 @@ function SmallCard({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {/* ── Panoramic color banner at the top of each category card ── */}
-        <div
-          style={{
-            backgroundColor: category.bannerColor,
-            padding: "8px 16px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "padding 0.3s ease",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: "11px",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: category.bannerTextColor,
-            }}
-          >
-            {category.name}
-          </span>
-        </div>
-
         {/* ── Image section ── */}
         <div className="relative overflow-hidden" style={{ height: 140 }}>
           <img
@@ -147,11 +122,12 @@ function SmallCard({
             <h3
               style={{
                 fontFamily: "var(--font-display)",
-                fontWeight: 700,
-                fontSize: "clamp(16px, 3vw, 20px)",
-                color: "var(--brand-base)",
+                fontWeight: 800,
+                fontSize: "clamp(17px, 3.5vw, 22px)",
+                color: "#fff",
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
+                textShadow: "0 2px 8px rgba(0,0,0,0.55)",
                 transition: "transform 0.22s ease",
                 transform: hovered ? "translateY(-4px)" : "translateY(0)",
               }}
