@@ -75,7 +75,7 @@ export function ProductCard({ product, showBrand = true }: Props) {
           {/* Sold Out overlay */}
           {product.soldOut && (
             <div
-              className="absolute top-3 left-3 px-2.5 py-1"
+              className="absolute top-2 left-2 px-2.5 py-1"
               style={{
                 backgroundColor: "rgba(26,10,14,0.75)",
                 color: "white",
@@ -91,7 +91,7 @@ export function ProductCard({ product, showBrand = true }: Props) {
           {/* Discount badge */}
           {product.comparePrice && !product.soldOut && (
             <div
-              className="absolute top-3 left-3 px-2 py-0.5"
+              className="absolute top-2 left-2 px-2 py-0.5"
               style={{
                 backgroundColor: "#1a6b2f",
                 color: "white",
@@ -107,7 +107,7 @@ export function ProductCard({ product, showBrand = true }: Props) {
           {/* New arrival badge */}
           {product.newArrival && !product.comparePrice && (
             <div
-              className="absolute top-3 left-3 px-2 py-0.5"
+              className="absolute top-2 left-2 px-2 py-0.5"
               style={{
                 backgroundColor: "var(--brand-wine)",
                 color: "var(--brand-base)",
@@ -123,7 +123,7 @@ export function ProductCard({ product, showBrand = true }: Props) {
           {/* Eye (Quick View) icon — circular, top right — exactly matching reference */}
           <button
             onClick={handleWishlist}
-            className="product-card-wishlist-btn absolute top-2.5 right-2.5 w-9 h-9 rounded-full flex items-center justify-center transition-all"
+            className="product-card-wishlist-btn absolute top-2 right-2 w-9 h-9 rounded-full flex items-center justify-center transition-all"
             style={{
               backgroundColor: "rgba(252,252,247,0.95)",
               boxShadow: "0 2px 8px rgba(26,10,14,0.15)",

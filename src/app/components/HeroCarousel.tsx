@@ -5,6 +5,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { HERO_SLIDES } from "../data";
 
 /*
+  HeroCarousel now accepts an optional `introComplete` prop (boolean).
+  When false (during the intro splash), hero text elements start invisible
+  and only animate in once the prop flips to true (after the intro fades out).
+  When true from the start (repeat visits, non-home pages), text animates
+  in immediately on mount — same as the existing behaviour.
+*/
+
+/*
   Fix 1: Eyebrow line completely removed from all slides — only headline, subhead, CTA.
   Fix 2: Text block is now center-aligned (items-center + text-center) across all breakpoints.
          Gradient changed to radial/center-darken so centered text is legible.
@@ -13,7 +21,27 @@ import { HERO_SLIDES } from "../data";
   Heights (user-adjusted): Mobile 146.98px, Tablet 370.11px, Laptop aspect-ratio.
 */
 
-export function HeroCarousel() {
+interface HeroCarouselProps {
+  /** When false, hero text waits for intro to finish before staggering in */
+  introComplete?: boolean;
+}
+
+export function HeroCarousel({ introComplete = true }: HeroCarouselProps) {
+  /*
+   * textReady: gates the text stagger-in animation.
+   * Starts true on repeat visits (introComplete already true on mount).
+   * On first visits: starts false, flips to true when introComplete prop changes.
+   */
+  const [textReady, setTextReady] = useState(introComplete);
+
+  useEffect(() => {
+    if (introComplete && !textReady) {
+      // Small delay so the overlay's fade-out (800ms) has a moment to settle
+      // before the text pops in — avoids competing animations.
+      const t = setTimeout(() => setTextReady(true), 120);
+      return () => clearTimeout(t);
+    }
+  }, [introComplete, textReady]);
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const [direction, setDirection] = useState(1);
@@ -90,8 +118,8 @@ export function HeroCarousel() {
               <motion.h1
                 key={`headline-m-${current}`}
                 initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.42 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                transition={{ delay: textReady ? 0 : 0.15, duration: 0.42 }}
                 style={{
                   fontFamily: "var(--font-display)",
                   fontWeight: 900,
@@ -108,8 +136,8 @@ export function HeroCarousel() {
               <motion.p
                 key={`subhead-m-${current}`}
                 initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.27, duration: 0.35 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                transition={{ delay: textReady ? 0.08 : 0.27, duration: 0.35 }}
                 style={{
                   fontFamily: "var(--font-accent)",
                   fontStyle: "italic",
@@ -125,8 +153,8 @@ export function HeroCarousel() {
               <motion.div
                 key={`cta-m-${current}`}
                 initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.38, duration: 0.3 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
+                transition={{ delay: textReady ? 0.16 : 0.38, duration: 0.3 }}
               >
                 <Link
                   to={slide.ctaLink}
@@ -196,8 +224,8 @@ export function HeroCarousel() {
               <motion.h1
                 key={`headline-t-${current}`}
                 initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.45 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+                transition={{ delay: textReady ? 0 : 0.15, duration: 0.45 }}
                 style={{
                   fontFamily: "var(--font-display)",
                   fontWeight: 900,
@@ -214,8 +242,8 @@ export function HeroCarousel() {
               <motion.p
                 key={`subhead-t-${current}`}
                 initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.28, duration: 0.4 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                transition={{ delay: textReady ? 0.08 : 0.28, duration: 0.4 }}
                 style={{
                   fontFamily: "var(--font-accent)",
                   fontStyle: "italic",
@@ -232,8 +260,8 @@ export function HeroCarousel() {
               <motion.div
                 key={`cta-t-${current}`}
                 initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.42, duration: 0.35 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ delay: textReady ? 0.16 : 0.42, duration: 0.35 }}
               >
                 <Link
                   to={slide.ctaLink}
@@ -305,8 +333,8 @@ export function HeroCarousel() {
               <motion.h1
                 key={`headline-d-${current}`}
                 initial={{ opacity: 0, y: 22 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.5 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+                transition={{ delay: textReady ? 0 : 0.15, duration: 0.5 }}
                 style={{
                   fontFamily: "var(--font-display)",
                   fontWeight: 900,
@@ -323,8 +351,8 @@ export function HeroCarousel() {
               <motion.p
                 key={`subhead-d-${current}`}
                 initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.45 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                transition={{ delay: textReady ? 0.08 : 0.3, duration: 0.45 }}
                 style={{
                   fontFamily: "var(--font-accent)",
                   fontStyle: "italic",
@@ -341,8 +369,8 @@ export function HeroCarousel() {
               <motion.div
                 key={`cta-d-${current}`}
                 initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.44, duration: 0.4 }}
+                animate={textReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                transition={{ delay: textReady ? 0.16 : 0.44, duration: 0.4 }}
               >
                 <Link
                   to={slide.ctaLink}
