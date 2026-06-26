@@ -272,6 +272,56 @@
   }
 }
 
+/* Product card — full-card hairline border wrapping image + info + Quick Add */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid rgba(0, 48, 73, 0.15);
+  border-radius: 0;
+  overflow: hidden;
+  background-color: var(--card);
+  transition: border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .product-card:hover,
+  .product-card:focus-within {
+    border-color: var(--brand-bronze);
+  }
+}
+
+.product-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px;
+}
+
+/* Product image — 4:5 portrait on tablet/desktop; shorter on mobile */
+.product-card-image-wrap {
+  aspect-ratio: 4 / 5;
+  background-color: #F7F2E8;
+}
+
+.product-card-image {
+  object-fit: contain;
+  object-position: center 45%;
+  padding: 4% 5%;
+}
+
+@media (max-width: 767px) {
+  .product-card-image-wrap {
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-card-image {
+    object-fit: contain;
+    object-position: center center;
+    padding: 3% 4%;
+  }
+}
+
 /* QUICK ADD — maroon default, header-icon blue on hover (desktop only) */
 .product-card-quick-add:not(:disabled) {
   background-color: var(--brand-btn-bg);

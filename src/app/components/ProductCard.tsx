@@ -34,33 +34,22 @@ export function ProductCard({ product, showBrand = true }: Props) {
 
   return (
     <div
+      className="product-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{ display: "flex", flexDirection: "column", height: "100%" }}
     >
       <Link to={`/products/${product.slug}`} style={{ textDecoration: "none", display: "flex", flexDirection: "column", flex: 1 }}>
         {/* Image container — 4:5 portrait ratio, contain so full jar always visible */}
-        <div
-          className="relative overflow-hidden"
-          style={{
-            aspectRatio: "4/5",
-            /* Warm cream background matches Amrutham brand and complements the jar labels */
-            backgroundColor: "#F7F2E8",
-          }}
-        >
+        <div className="product-card-image-wrap relative overflow-hidden">
           <img
             src={product.image}
             alt={product.name}
             loading="lazy"
             decoding="async"
-            className="w-full h-full transition-transform duration-500"
+            className="product-card-image w-full h-full transition-transform duration-500"
             style={{
-              objectFit: "contain",
-              /* 45% pulls the jar label into the visual center of the card */
-              objectPosition: "center 45%",
               transform: hovered ? "scale(1.07)" : "scale(1)",
               imageRendering: "auto",
-              padding: "4% 5%",
             }}
           />
           {/* Subtle inner vignette on hover for depth */}
@@ -146,7 +135,7 @@ export function ProductCard({ product, showBrand = true }: Props) {
 
         {/* Product info — matching reference layout exactly */}
         {/* flex column: title + price are fixed-height slots; button anchors to bottom via marginTop:auto */}
-        <div className="pt-3 pb-1" style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <div className="product-card-body">
           {/* Brand label */}
           {showBrand && (
             <p
